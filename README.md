@@ -4,11 +4,11 @@ A userscript which provides enhancements to RPDL uploaders when browsing various
 
 ## Installation
 
-1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)) to your browser
+1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)).
 
-1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script
+1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script.
 
-1. Replace `{your-username}` with your jenkins username at the beginning of the script:
+1. Replace `{your-username}` with your jenkins username at the beginning of the script.
     > const username = "{your-username}";
 
 ## Usage
