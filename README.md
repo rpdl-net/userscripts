@@ -1,20 +1,20 @@
 # RPDL Enhancements Userscript
 
-A userscript which provides enhancements for RPDL uploaders.
+A userscript which provides enhancements to RPDL uploaders when browsing various sites.
 
 ## Installation
 
-Install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)) to your browser, paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/src/branch/main/userscript.js) in a new script, and activate it.
+1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)) to your browser
 
-For the Jenkins implementation to work, you need to specify your site username at the beginning of the script by replacing `{your-username}` with your username:
+1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script
 
-    const username = "{your-username}";
-
+1. Replace `{your-username}` with your jenkins username at the beginning of the script:
+    > const username = "{your-username}";
 
 ## Usage
 As you browse [dl.rpdl](https://dl.rpdl.net/), [Jenkins](https://jenkins.rpdl.net/) and [F95zone](https://f95zone.to/), the script will add buttons that will redirect you between sites and prefill some values between said sites.
 
-You must be already logged into Jenkins for the implementation to work.
+You must be logged into Jenkins for the implementation to work.
 
 ### Current features:
 - Addition of 4 buttons on torrent pages (`https://dl.rpdl.net/torrent/*`)
