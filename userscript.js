@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RPDL Enhancement Userscript
-// @version      Alpha (In development)
+// @version      Alpha
 // @description  Userscript providing enhancements for RPDL uploader (dl.rpdl.net, jenkins, F95Zone.)
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -15,19 +15,16 @@
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
 
-//Requirements:
-// Using this script with a userscript manager (Greasemonkey, Tampermonkey, Violentmonkey)
-// Be logged into Jenkins
-// Define your username on line 23
-
 (function() {
     'use strict';
 
-    // Define your username here, used for build-username-job, and torrent-transfer job.
+    // Define your username here. Used for build-${username}-new and dropdown selectors (transfer, token-update)
     const username = "{your-username}";
 
+    // Catch-all function
     function getAll() {
-        // Function pulls Id from URL
+
+        // Function pulls torrentid and sets it to GM_getValue('torrentid')
         function getId() {
             var url = window.location.href;
             var match = url.match(/\/(\d+)$/);
@@ -35,14 +32,14 @@
                 var id = match[1];
                 GM_setValue('torrentid', id);}}
 
-        // Function pulls name from page heading
+        // Function pulls torrentname and sets it to GM_getValue('torrentname')
         function getName() {
             const h1Element = document.querySelector('h1.py-2.text-xl.font-semibold.text-slate-200.truncate');
             if (h1Element) {
                 const releasename = h1Element.textContent.trim();
                 GM_setValue('torrentname', releasename);}}
 
-        // Function pulls funding link from markdown description
+        // Function pulls fundinglink and sets it to GM_getValue('torrentfunding')
         function getFunding() {
             const markdownBody = document.querySelector('div.markdown-body');
             if (markdownBody) {
@@ -52,14 +49,16 @@
                         const fundinglink = linkElement.getAttribute('href');
                         GM_setValue('torrentfunding', fundinglink);}}}}
 
-        // Call the three functions to retrieve and store values
+        // Calls functions to retrieve and store values
         getId();
         getName();
         getFunding();
     }
 
-    // Function which pastes the pulled information if one of the available boxes is present
+    // Function pastes pulled information if available box is present
     function pasteAll() {
+
+        //Pastes torrentid
         var torrentid = GM_getValue('torrentid')
         var hiddenInput = document.querySelector('input[name="name"][type="hidden"][value="torrentid"]');
         if (hiddenInput) {
@@ -68,6 +67,8 @@
                 nextInput.value = torrentid;
             }
         }
+
+        //Pastes torrentname (used for build-new job)
         var releasename = GM_getValue('torrentname')
         var hiddenInput = document.querySelector('input[name="name"][type="hidden"][value="releasename"]');
         if (hiddenInput) {
@@ -76,6 +77,8 @@
                 nextInput.value = releasename;
             }
         }
+
+        //Pastes torrentfunding
         var fundinglink = GM_getValue('torrentfunding')
         var hiddenInput = document.querySelector('input[name="name"][type="hidden"][value="funding"]');
         if (hiddenInput) {
@@ -84,6 +87,8 @@
                 nextInput.value = fundinglink;
             }
         }
+
+        //Pastes torrentname (used for torrent-rename job)
         var newname = GM_getValue('torrentname')
         var hiddenInput = document.querySelector('input[name="name"][type="hidden"][value="newname"]');
         if (hiddenInput) {
@@ -92,6 +97,8 @@
                 nextInput.value = newname;
             }
         }
+
+        //Selects username from dropdown to match build-${username}-new (used for torrent-transfer job)
         const dropdown = document.querySelector('div.jenkins-select[name="parameter"]');
         if (dropdown) {
             const option = dropdown.querySelector(`option[value="${username}"]`);
@@ -99,6 +106,8 @@
                 option.selected = true;
             }
         }
+
+        //Calls clearAllValues function which removes values from GM storage once pasting has occured
         clearAllValues();
     }
 
@@ -179,13 +188,15 @@
     if(!window.onurlchange){
         window.addEventListener("urlchange", init);
     }
+
+    //Function removes pulled values from GM storage
     function clearAllValues() {
         GM_deleteValue('torrentid');
         GM_deleteValue('torrentname');
         GM_deleteValue('torrentfunding');
         GM_deleteValue('newname');}
 
-    // Function to remove the buttons
+    // Function removes buttons
     function removeButtons() {
         const buttonContainer = document.getElementById('qol-rpdl-buttons');
         if (buttonContainer) {
