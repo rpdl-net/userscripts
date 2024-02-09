@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Workload Overload Optimizer Script Helper
-// @version      1.0Alpha
-// @description  Userscript which adds redirect buttons to torrent pages towards jenkins with prefilling of some boxes.
-// @author       yilkin
+// @name         RPDL Enhancement Userscript
+// @version      Alpha (In development)
+// @description  Userscript providing enhancements for RPDL uploader (dl.rpdl.net, jenkins, F95Zone.)
+// @author       RPDL Team
 // @match        https://dl.rpdl.net/*
 // @match        https://jenkins.rpdl.net/*
 // @grant        GM_setValue
