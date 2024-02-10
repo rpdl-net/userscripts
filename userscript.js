@@ -174,7 +174,6 @@
     function init(){
         const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/");
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
-        clearAllValues();
         
         if(isJenkinsJob){
             waitForKeyElements('input[name="name"][type="hidden"][value="torrentid"]', pasteAll);
