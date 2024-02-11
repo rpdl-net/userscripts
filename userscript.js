@@ -143,9 +143,8 @@
     }
     function clearAllValues() {
         GM_deleteValue('torrentid');
-        GM_deleteValue('torrentname');
-        GM_deleteValue('torrentfunding');
-        GM_deleteValue('newname');
+        GM_deleteValue('releasename');
+        GM_deleteValue('funding');
     }
     init();
 })();
