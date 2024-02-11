@@ -131,7 +131,7 @@
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
         
         if(isJenkinsJob){
-            waitForKeyElements('input[name="name"][type="hidden"][value="torrentid"]', pasteAll);
+            waitForKeyElements('input[name="name"][type="hidden"][value="torrentid"], input[name="name"][type="hidden"][value="releasename"], input[name="name"][type="hidden"][value="funding"]', pasteAll);
         }else if(isTorrentPage){
             waitForKeyElements("div .truncate", addButtonsOnTorrentPage)
         }else{
