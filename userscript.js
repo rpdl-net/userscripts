@@ -67,7 +67,7 @@
         if(inputField){
             const nextInput = inputField.nextElementSibling;
             if(nextInput && nextInput.tagName.toLowerCase() == "input"){
-                nextInput.value = value;
+                nextInput.value = value || "";
             }
         }
     }
