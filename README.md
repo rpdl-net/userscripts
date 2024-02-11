@@ -4,7 +4,7 @@ A userscript which provides enhancements to RPDL uploaders when browsing various
 
 ## Installation
 
-1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)). Note: there is currently an issue with GM and VM that causes the torrent page to need a refresh before the buttons appear.
+1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)). _Note: there is currently an issue with GM and VM that causes the torrent page to need a refresh before the buttons appear._
 
 1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script.
 
