@@ -99,7 +99,7 @@
             }
         }
         // Calls clearAllValues to remove saved/pasted values from storage
-        clearAllValues();
+        setTimeout(clearAllValues, 5000);
     }
     
     // Function creates button appearance, and adds click handlers for left-click, middle-click, or new tab opening
