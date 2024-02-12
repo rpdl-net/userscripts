@@ -99,7 +99,7 @@
             }
         }
         // Calls clearAllValues to remove saved/pasted values from storage
-        setTimeout(clearAllValues, 5000);
+        clearAllValues;
     }
     
     // Function creates button appearance, and adds click handlers for left-click, middle-click, or new tab opening
@@ -145,9 +145,9 @@
         const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/");
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
         
-        // If on a Jenkins job, it finds the elements needed to identify what values need to be pasted, and it calls pasteAll
+        // If on a Jenkins job, it waits for the page to load and calls pasteAll
         if(isJenkinsJob){
-            waitForKeyElements('input[name="name"][type="hidden"][value="torrentid"], input[name="name"][type="hidden"][value="releasename"], input[name="name"][type="hidden"][value="funding"]', pasteAll);
+            window.addEventListener("load", pasteAll);
         // If on a torrent page, it adds the buttons
         }else if(isTorrentPage){
             waitForKeyElements("div .truncate", addButtonsOnTorrentPage)
