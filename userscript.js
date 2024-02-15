@@ -98,8 +98,8 @@
                 option.selected = true;
             }
         }
-        // Calls clearAllValues to remove saved/pasted values from storage
-        clearAllValues;
+        // Calls clearAllValues to remove saved/pasted values from storage after half a second
+        setTimeout(clearAllValues, 500);
     }
     
     // Function creates button appearance, and adds click handlers for left-click, middle-click, or new tab opening
