@@ -107,8 +107,26 @@
         const button = document.createElement('button');
         button.href = url;
         button.textContent = text;
-        button.classList.add("rounded-md", "px-3", "ml-2", "text-md", "bg-green-600", "border-green-600", "text-white");
+        button.classList.add("rounded-md", "px-3", "ml-2", "text-md", "text-white");
 
+        // Apply default styles
+        button.style.backgroundColor = '#44557a';
+        button.style.borderColor = '#4d608a';
+        button.style.borderWidth = '0.5px';
+
+        // Apply hover styles
+        button.addEventListener('mouseover', function() {
+            button.style.backgroundColor = '#293349';
+            button.style.borderColor = '#293349';
+        });
+
+        // Reset styles on mouseout
+        button.addEventListener('mouseout', function() {
+            button.style.backgroundColor = '#44557a';
+            button.style.borderColor = '#4d608a';
+        });
+
+        // Click event handlers
         button.addEventListener('click', (event) => {
             event.preventDefault(); // Prevent the default action (redirecting the current page)
             getAll();
