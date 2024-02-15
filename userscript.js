@@ -112,7 +112,11 @@
         button.addEventListener('click', (event) => {
             event.preventDefault(); // Prevent the default action (redirecting the current page)
             getAll();
-            window.open(url, '_blank');
+            if (text === 'Delete') {
+                window.open(url, '_self');
+            } else {
+                window.open(url, '_blank');
+            }
         });
         button.addEventListener('auxclick', (event) => {
             if ((event.button === 1 || (event.button === 0 && event.ctrlKey)) && event.target === button) {
