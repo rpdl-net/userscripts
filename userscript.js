@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RPDL Enhancement Userscript
-// @version      Pre-1.0
+// @version      1.0
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -20,6 +20,7 @@
 
     // Define your Jenkins username here; used for build-new and dropdown selectors (transfer, token-update)
     const username = "{your-username}";
+    // example: const username = "bob";
 
     // Function pulls Id from torrent page URL
     function getId() {
@@ -57,7 +58,7 @@
         }
     }
 
-    // Function calls the (3)functions that pull values and saves to GM_setValue(s)
+    // Function calls the three functions that pull values and saves to GM_setValue(s)
     function getAll() {
         getId();
         getName();
@@ -102,28 +103,28 @@
         setTimeout(clearAllValues, 500);
     }
     
-    // Function creates button appearance, and adds click handlers for left-click, middle-click, or new tab opening
+    // Function creates button styles, and adds click handlers for left-click, middle-click, or new tab opening
     function createButton(text, url) {
         const button = document.createElement('button');
         button.href = url;
         button.textContent = text;
         button.classList.add("rounded-md", "px-3", "ml-2", "text-md", "text-white");
 
-        // Apply default styles
-        button.style.backgroundColor = '#44557a';
-        button.style.borderColor = '#4d608a';
+        // Applies default style
+        button.style.backgroundColor = '#44557a'; // bg color 1
+        button.style.borderColor = '#4d608a'; // border color 1
         button.style.borderWidth = '0.5px';
 
-        // Apply hover styles
+        // Applies hover style on mouseover
         button.addEventListener('mouseover', function() {
-            button.style.backgroundColor = '#293349';
-            button.style.borderColor = '#293349';
+            button.style.backgroundColor = '#293349'; // bg color 2
+            button.style.borderColor = '#293349'; // border color 2
         });
 
-        // Reset styles on mouseout
+        // Resets to default style on mouseout
         button.addEventListener('mouseout', function() {
-            button.style.backgroundColor = '#44557a';
-            button.style.borderColor = '#4d608a';
+            button.style.backgroundColor = '#44557a'; // bg color 1
+            button.style.borderColor = '#4d608a'; // border color 1
         });
 
         // Click event handlers
@@ -144,7 +145,7 @@
         return button;
     }
 
-    // Function adds the buttons on torrent pages
+    // Function adds the buttons to torrent pages
     function addButtonsOnTorrentPage() {
         const torrentPage = document.querySelector('div .truncate').parentElement;
         const buildNewButton = createButton('Build-new', `https://jenkins.rpdl.net/job/build-${username}-new/build`);
