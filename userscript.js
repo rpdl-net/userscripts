@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RPDL Enhancement Userscript
-// @version      Alpha
+// @version      Pre-1.0
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
