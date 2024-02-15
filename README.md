@@ -4,7 +4,7 @@ A userscript providing enhancements and tools to RPDL uploaders.
 
 ## Installation
 
-1. In your browser, install a userscript manager. [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended as there is currently an issue with [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) and [Violentmonkey](https://violentmonkey.github.io/get-it/) causing torrent pages to not show the buttons without a refresh.
+1. In your browser, install a userscript manager (browser extensions that allow you to enhance your browsing experience with userscripts). [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended _(as there is currently an issue with [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) and [Violentmonkey](https://violentmonkey.github.io/get-it/) causing torrent pages to not show the buttons without a refresh)_.
 
 1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script.
 
@@ -14,7 +14,7 @@ A userscript providing enhancements and tools to RPDL uploaders.
 ## Usage
 As you browse [dl.rpdl](https://dl.rpdl.net/), [Jenkins](https://jenkins.rpdl.net/) ~~and [F95zone](https://f95zone.to/)~~(_not yet, but soon_), the script will add buttons and perform redirects to help with uploaders' jobs.
 
-You must be logged into Jenkins for the implementation to with it to work.
+You must be logged into Jenkins for it's implementation to work.
 
 ### Current features:
 - v1.0:
