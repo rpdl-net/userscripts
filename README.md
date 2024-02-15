@@ -1,10 +1,10 @@
-# RPDL Enhancements Userscript
+# RPDL Enhancement Userscript
 
-A userscript which provides enhancements to RPDL uploaders when browsing various sites.
+A userscript providing enhancements and tools to RPDL uploaders.
 
 ## Installation
 
-1. In your browser, install a userscript manager of your choice ([Tampermonkey](https://www.tampermonkey.net/index.php), [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or [Violentmonkey](https://violentmonkey.github.io/get-it/)). _Note: there is currently an issue with GM and VM that causes the torrent page to need a refresh before the buttons appear._
+1. In your browser, install a userscript manager. [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended as there is currently an issue with [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) and [Violentmonkey](https://violentmonkey.github.io/get-it/) causing torrent pages to not show the buttons without a refresh.
 
 1. Paste the content of [userscript.js](https://git.rpdl.net/internal/rpdl-enhancement-userscript/raw/branch/main/userscript.js) in a new script.
 
@@ -12,39 +12,24 @@ A userscript which provides enhancements to RPDL uploaders when browsing various
     > const username = "{your-username}";
 
 ## Usage
-As you browse [dl.rpdl](https://dl.rpdl.net/), [Jenkins](https://jenkins.rpdl.net/) and [F95zone](https://f95zone.to/), the script will add buttons that will redirect you between sites and prefill some values between said sites.
+As you browse [dl.rpdl](https://dl.rpdl.net/), [Jenkins](https://jenkins.rpdl.net/) ~~and [F95zone](https://f95zone.to/)~~(_not yet, but soon_), the script will add buttons and perform redirects to help with uploaders' jobs.
 
-You must be logged into Jenkins for the implementation to work.
+You must be logged into Jenkins for the implementation to with it to work.
 
 ### Current features:
-- Addition of 4 buttons on torrent pages (`https://dl.rpdl.net/torrent/*`)
-    * Build-new: Redirects to a build-new job in a new tab and prefills the torrent name and funding link.
-    * Delete: Redirects to a torrent-delete job and prefills the torrent id.
-    * Rename: Redirects to a torrent-rename job and prefills the torrent id and current torrent name.
-    * Transfer: Redirects to a torrent-transfer job and prefills the torrent id and selects the user's name in the dropdown.
+- v1.0:
+    - Added buttons to torrent pages (`https://dl.rpdl.net/torrent/*`) that redirect to respective Jenkins jobs and prefills some of the boxes.
+    - Automatic redirect from post-job pages (build-new and delete redirect to a new job, rename and transfer redirect to dashboard).
 
 ### Future features:
-- Automatic redirect from a post-build page to a new-build page (for build-new, delete, rename, transfer) which isn't triggered when looking at data from previous builds.
-    * i.e. Redirect `https://jenkins.rpdl.net/job/build-${username}-new/` to Redirect `https://jenkins.rpdl.net/job/build-${username}-new/build/`, but only if `/build-${username}-new/` is not followed by a job id (`/build-${username}-new/2839`).
-- Add a button somewhere on [dl.rpdl](https://dl.rpdl.net) called `Token-update` which fetches the torrust passkey from Local Storage, and pastes it in an update-token job.
-- When looking at the console of a failed build-new job, add a `Rebuild` button that fetches the values from the `+ ./build {downloadlink} {torrentname} {gameengine} {f95url} {fundinglink} {failed-job-url}` line and pastes all of them (execept the failed-job-url) into a build-new job.
-    - Make sure to add a check to see if looking at a console for a failed job or not.
-- When looking at a game thread on F95Zone, add a `Build-new` button which fetches values, opens a build-new job in a new tab, and prefills the copied values.
-    - Download link
-        * Look for "Download" section
-        * Look for "Win" or "Win/Linux" or "x64" or "PC"
-        * Open in a new tab the first link after the previously identified values which contains `https://f95zone.to/masked/|mega.nz|pixeldrain.com|*` unless a line skip is identified, otherwise do nothing.
-    - Torrent name
-        * Look for the torrent name area and Regex the name and version following the current standards
-        * Prefill in torrent name box in jenkins
-    - Game engine
-        * Identify the engine from title
-            - prefix redirect, i.e. Ren'Py = `https://f95zone.to/forums/games.2/?prefix_id=7`
-            or 
-            - box name
-        * Use identified data to select engine in jenkins dropdown
-    - Thread url
-        * Copy URL of the page when button was clicked and paste in thread url box on jenkins
-    - Funding link
-        * Look for "Developer" area and copy one of the URLs present on the same line, except if it's a F95 link; add priority check for known funding sources? (Patreon, Subscribestar, Boosty, Itch.io)
-        * Prefill in funding box on jenkins
+- v1.1:
+    - Add a `Token-update` button on [dl.rpdl](https://dl.rpdl.net) which fetches passkey from Local Storage, and pastes in a token job.
+    - Adds functionality to the `Build-New` button by also opening the F95 thread, fetching the new URL, game engine, and pasting with the rest of the infos.
+- v1.2: 
+    - Bring back the `Rebuild`feature for failed build-new jobs.
+- v1.3:
+    - Add a `Build-New` button for F95 game threads, which fetches url, releasename, engine and fundinglink (with possibility with lots of testing, of dl-link).
+
+## Issues, bugs, and requests
+
+If at any point there's anything (bugs, things you'd like to see changed/added, etc.), let us know.
