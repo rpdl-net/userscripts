@@ -170,4 +170,23 @@
     }
     // Calls init to check if on Jenkins job or torrent page
     init();
+
+        // Function redirects on post-job pages
+    function performRedirect() {
+        const currentUrl = window.location.href;
+
+        // build-new post-job redirects to new job
+        if (currentUrl === `https://jenkins.rpdl.net/job/build-${username}-new/`) {
+            window.location.replace(`https://jenkins.rpdl.net/job/build-${username}-new/build`);
+        // delete post-job redirects to new job
+        } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-delete/') {
+            window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build');
+        // rename and transfer post-jobs redirect to dashboard
+        } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-rename/' || currentUrl === 'https://jenkins.rpdl.net/job/torrent-transfer/') {
+            window.location.replace('https://jenkins.rpdl.net/');
+        }
+    }
+
+    // Call performRedirect when page loads
+    performRedirect();
 })();
