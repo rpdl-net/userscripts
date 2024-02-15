@@ -18,7 +18,7 @@ You must be logged into Jenkins for it's implementation to work.
 
 ### Current features:
 - v1.0:
-    - Added buttons to torrent pages (`https://dl.rpdl.net/torrent/*`) that redirect to respective Jenkins jobs and prefills some of the boxes.
+    - Adds buttons to torrent pages (`https://dl.rpdl.net/torrent/*`) that redirect to respective Jenkins jobs and prefills some of the boxes.
     - Automatic redirect from post-job pages (build-new and delete redirect to a new job, rename and transfer redirect to dashboard).
 
 ### Future features:
