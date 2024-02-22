@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1
+// @version      1.1.1
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -262,6 +262,8 @@
         GM_deleteValue('torrentid');
         GM_deleteValue('releasename');
         GM_deleteValue('funding');
+        GM_deleteValue('f95zonelink');
+        GM_deleteValue('engine');
     }
 
     // Calls init to check if on Jenkins job or torrent page
