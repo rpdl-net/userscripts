@@ -101,6 +101,8 @@
     // Fills input fields (boxes and dropdowns) on Jenkins with GM values and username
     function fillInputField(name, overrideValue){
         const value = overrideValue ?? GM_getValue(name);
+        if (name === "funding" && (value === null || value === undefined)) {
+        return "https://rpdl.net/missinginfo/";}
         const inputField = document.querySelector('input[name="name"][type="hidden"][value="' + name + '"]');
         if(inputField){
             const nextInput = inputField.nextElementSibling;
