@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.3
+// @version      1.1.4
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
