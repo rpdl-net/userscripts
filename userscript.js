@@ -239,7 +239,7 @@
         // Checks if the current page is a Jenkins job or a torrent page
         const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/");
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
-        const isF95Page = window.location.href.startsWith("https://f95zone.to/threads/");
+        const isF95Page = /^https:\/\/f95zone\.to\/threads\/[^\/]*\/$/.test(window.location.href);
         // If on a Jenkins job, it waits for the page to load and calls pasteAll
         if(isJenkinsJob){
             window.addEventListener("load", pasteAll);
