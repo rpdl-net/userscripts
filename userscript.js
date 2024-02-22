@@ -220,12 +220,12 @@
     function addF95Button() {
         const buttonGroup = document.querySelector('.buttonGroup');
         if (buttonGroup) {
-            const customButton = createF95Button('Copy Engine & Url');
+            const engineButton = createF95Button('Copy Engine & Url');
             const lastButton = createF95Button('Last page');
             const firstButton = buttonGroup.querySelector('.button--link.button');
             if (firstButton) {
-                buttonGroup.insertBefore(customButton, firstButton);
-                buttonGroup.insertBefore(lastButton, customButton);}}
+                buttonGroup.insertBefore(engineButton, firstButton);
+                buttonGroup.insertBefore(lastButton, engineButton);}}
     }
 
     // Redirects to the last page of the thread
