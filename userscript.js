@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.1
+// @version      1.1.2
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -274,10 +274,10 @@
         const currentUrl = window.location.href;
         // build-new post-job redirects to new job
         if (currentUrl === `https://jenkins.rpdl.net/job/build-${username}-new/`) {
-            window.location.replace(`https://jenkins.rpdl.net/job/build-${username}-new/build`);
+            setTimeout(() => {window.location.replace(`https://jenkins.rpdl.net/job/build-${username}-new/build`)}, 500);
         // delete post-job redirects to new job
         } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-delete/') {
-            window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build');
+            setTimeout(() => {window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build')}, 500);
         // rename and transfer post-jobs redirect to dashboard
         } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-rename/' || currentUrl === 'https://jenkins.rpdl.net/job/torrent-transfer/') {
             window.location.replace('https://jenkins.rpdl.net/');}
