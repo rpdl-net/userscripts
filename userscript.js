@@ -2,11 +2,12 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.0
+// @version      2.0
 // @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
 // @match        https://jenkins.rpdl.net/*
+// @match        https://f95zone.to/threads/*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_setClipboard
@@ -66,6 +67,42 @@
         getName();
         getFunding();
     }
+
+    // Function pulls Url from F95 thread
+    function getThread() { // get F95 Thread
+        var f95Url = window.location.href;
+        if (f95Url) { GM_setValue('f95zonelink', f95Url); }
+    }
+
+    // Function pulls engine from F95 thread
+    function getEngine() {
+        const h1All = document.querySelectorAll('h1');
+        const engines = [];
+        h1All.forEach(h1 => {
+            const engineName = h1.textContent.trim();
+            if (engineName.includes("Ren'Py")) {
+                engines.push("Renpy");
+            } else if (engineName.includes("HTML")) {
+                engines.push("HTML");
+            } else if (engineName.includes("Unreal Engine")) {
+                engines.push("Unreal");
+            } else if (engineName.includes("Unity")) {
+                engines.push("Unity");
+            } else if (engineName.includes("RPGM")) {
+                engines.push("RPGM");
+            }
+        });
+        if (engines.length === 1) {
+            GM_setValue('engine', engines[0]);
+        } else { GM_setValue('engine', "Other"); }
+    }
+
+    // Function calls the two functions that pull values from F95 and saves to GM_set value(s)
+    function getF95() {
+        getThread();
+        getEngine();
+    }
+
     // Function fills input fields on Jenkins as both GM values and Element values. overrideValue is optional
     function fillInputField(name, overrideValue){
         const value = overrideValue ?? GM_getValue(name);
@@ -88,6 +125,7 @@
         fillInputField("releasename");
         // Fills the "funding" box found on Build-New
         fillInputField("funding");
+        fillInputField("f95zonelink");
 
         // Fills the "newname" box found on Torrent-Rename using the "releasename" value
         fillInputField("newname", GM_getValue('releasename'));
@@ -96,9 +134,12 @@
         // Paste is set to occur on page load, so dropdown can still be modified if transfering to another uploader
         const dropdown = document.querySelector('div.jenkins-select[name="parameter"]');
         if (dropdown) {
-            const option = dropdown.querySelector(`option[value="${username}"]`);
-            if (option) {
-                option.selected = true;
+            const usernameOption = dropdown.querySelector(`option[value="${username}"]`);
+            const engineOption = dropdown.querySelector(`option[value="${GM_getValue('engine')}"]`);
+            if (usernameOption) {
+                usernameOption.selected = true;
+            } else if (engineOption) {
+                engineOption.selected = true;
             }
         }
         // Calls clearAllValues to remove saved/pasted values from storage after half a second
@@ -165,17 +206,70 @@
         torrentPage.appendChild(buttonContainer);
     }
 
+    // Function creates F95 button style
+    function createF95Button(text) {
+        const button = document.createElement('a');
+        button.textContent = text;
+        button.classList.add('button--link', 'button');
+        button.style.color = '#ffffff';
+        button.style.backgroundColor = '#44557a';
+        button.style.borderColor = '#4d608a';
+        button.style.borderWidth = '0.5px';
+        button.addEventListener('mouseover', function() {
+            button.style.backgroundColor = '#293349';
+            button.style.borderColor = '#293349';
+        });
+        button.addEventListener('mouseout', function() {
+            button.style.backgroundColor = '#44557a';
+            button.style.borderColor = '#4d608a';
+        });
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            var buttonText = button.textContent.trim();
+            if (buttonText === "Copy Engine & Url") {
+                getF95();
+            } else if (buttonText === "Last page") {
+                goToLast();
+        }});
+        return button;
+    }
+
+    // Function adds the buttons to F95
+    function addF95Button() {
+        const buttonGroup = document.querySelector('.buttonGroup');
+        if (buttonGroup) {
+            const customButton = createF95Button('Copy Engine & Url');
+            const lastButton = createF95Button('Last page');
+            const firstButton = buttonGroup.querySelector('.button--link.button');
+            if (firstButton) {
+                buttonGroup.insertBefore(customButton, firstButton);
+                buttonGroup.insertBefore(lastButton, customButton);
+            }
+        }
+    }
+
+    // Function brings you to the last page of the thread
+    function goToLast() {
+        var currentPage = window.location.href;
+        var lastPage = currentPage + "page-500000/";
+        window.location.href = lastPage;
+    }
+
     function init(){
         // Checks if the current page is a Jenkins job or a torrent page
         const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/");
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
+        const isF95Page = window.location.href.startsWith("https://f95zone.to/threads/");
         
         // If on a Jenkins job, it waits for the page to load and calls pasteAll
         if(isJenkinsJob){
             window.addEventListener("load", pasteAll);
         // If on a torrent page, it adds the buttons
         }else if(isTorrentPage){
-            waitForKeyElements("div .truncate", addButtonsOnTorrentPage)
+            waitForKeyElements("div .truncate", addButtonsOnTorrentPage);
+        // If on a F95 page, it adsds the buttons
+        } else if (isF95Page) {
+            addF95Button();
         // If on another page, calls clearAllValues to remove saved/pasted values from storage
         }else{
             clearAllValues();
