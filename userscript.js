@@ -2,8 +2,8 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.4
-// @description  Userscript providing enhancements for uploaders (dl.rpdl.net, Jenkins, F95Zone).
+// @version      1.1.5
+// @description  Provides enhancements to various sites used for torrent uploading
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
 // @match        https://jenkins.rpdl.net/*
@@ -21,11 +21,11 @@
 (function() {
     'use strict';
 
-    // Define your Jenkins username here; used for build-new and dropdown selectors (transfer, token-update)
+    // Define your Jenkins username here; used for redirect to build-new, and dropdown selectors jobs (transfer, token-update)
     const username = "{your-username}";
-    // example: const username = "bob";
+    // Input your username (i.e. bob) where {your-username} is; should look like >> const username = "bob";
 
-    // Pulls torrent Id from url
+    // Pulls torrent Id (from url)
     function getId() {
         var url = window.location.href;
         var match = url.match(/\/(\d+)$/);
@@ -35,7 +35,7 @@
             GM_setValue('torrentid', id);}
     }
 
-    // Pulls torrent name
+    // Pulls torrent name (from title)
     function getName() {
         const h1Element = document.querySelector('h1.py-2.text-xl.font-semibold.text-slate-200.truncate');
         if (h1Element) {
@@ -44,7 +44,7 @@
             GM_setValue('releasename', releasename);}
     }
 
-    // Pulls torrent funding link from description
+    // Pulls funding link (from description)
     function getFunding() {
         const markdownBody = document.querySelector('div.markdown-body');
         if (markdownBody) {
@@ -56,14 +56,14 @@
                     GM_setValue('funding', fundinglink);}}}
     }
 
-    // Calls the three functions that pull torrent values and saves to GM_setValue(s)
+    // Calls to pull torrent page values and saves to GM_setValue('{type}', {value})
     function getAll() {
         getId();
         getName();
         getFunding();
     }
 
-    // Pulls thread url
+    // Pulls thread (site) url
     function getThread() {
         var f95Url = window.location.href;
         // Saves it to GM_setValue('f95zonelink')
@@ -92,7 +92,7 @@
         } else { GM_setValue('engine', "Other"); }
     }
 
-    // Calls the two functions that pull values from F95 threads and saves to GM_set value(s)
+    // Calls to pull F95 thread values and saves to GM_setValue('{type}', {value})
     function getF95() {
         getThread();
         getEngine();
@@ -108,8 +108,8 @@
             const nextInput = inputField.nextElementSibling;
             if(nextInput && nextInput.tagName.toLowerCase() == "input"){
                 nextInput.value = value || "";}}
-                // Replaces "undefined" values as blank, so as to not fill boxes when no data was pulled
-                // Can be replaced with next.Input.value = value; to debug and check if script pastes values in the right area
+                // Replaces "undefined" values as blank, so "undefined" isn't pasted when no data is pulled
+                // Can be replaced with {next.Input.value = value;} to debug and check if script pastes values in the right area
                 // If values are being pasted in the right area, but still come back as undefined/blank, it means that the clearAllValues function is being called too early
     }
 
@@ -274,13 +274,13 @@
     // Redirects on post-job pages
     function performRedirect() {
         const currentUrl = window.location.href;
-        // build-new post-job redirects to new job
+        // Build-new post-job redirects to new job
         if (currentUrl === `https://jenkins.rpdl.net/job/build-${username}-new/`) {
             setTimeout(() => {window.location.replace(`https://jenkins.rpdl.net/job/build-${username}-new/build`)}, 500);
-        // delete post-job redirects to new job
+        // Delete post-job redirects to new job
         } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-delete/') {
             setTimeout(() => {window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build')}, 500);
-        // rename and transfer post-jobs redirect to dashboard
+        // Rename and transfer post-jobs redirect to dashboard
         } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-rename/' || currentUrl === 'https://jenkins.rpdl.net/job/torrent-transfer/') {
             window.location.replace('https://jenkins.rpdl.net/');}
     }
