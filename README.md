@@ -58,8 +58,9 @@ New game:
     - Adds buttons on F95 threads that redirect to last page of threads, and copy&paste Url and Engine from threads into Build-New jobs on Jenkins.
 - v1.1.1>1.1.5
     - Bugfixes
+- v1.1.6
+    - Bugfixes relating to rebuild plugin re-implementation
 
 ## Future features:
 - Add a `Token-update` button on [dl.rpdl](https://dl.rpdl.net) which fetches passkey from Local Storage, and pastes in a token job.
 - Add functionality so `Build-New` button opens the F95 thread, pulls "Copy Engine & URL", and opens build-new job.
-- Bring back the `Rebuild`feature for failed build-new jobs.
