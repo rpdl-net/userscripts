@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.5
+// @version      1.1.6
 // @description  Provides enhancements to various sites used for torrent uploading
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -236,8 +236,8 @@
     }
 
     function init(){
-        // Checks if the current page is a Jenkins job or a torrent page
-        const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/");
+        // Checks if the current page is a Jenkins job (which is not rebuild screen) or a torrent page
+        const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/") && !window.location.href.includes("rebuild");
         const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
         const isF95Page = /^https:\/\/f95zone\.to\/threads\/[^\/]*\/$/.test(window.location.href);
         // If on a Jenkins job, it waits for the page to load and calls pasteAll
