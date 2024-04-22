@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.6
+// @version      1.1.7
 // @description  Provides enhancements to various sites used for torrent uploading
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -274,15 +274,17 @@
     // Redirects on post-job pages
     function performRedirect() {
         const currentUrl = window.location.href;
-        // Build-new post-job redirects to new job
+        // Build-new post-job redirects to new Build-new job
         if (currentUrl === `https://jenkins.rpdl.net/job/build-${username}-new/`) {
             setTimeout(() => {window.location.replace(`https://jenkins.rpdl.net/job/build-${username}-new/build`)}, 500);
-        // Delete post-job redirects to new job
-        } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-delete/') {
-            setTimeout(() => {window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build')}, 500);
-        // Rename and transfer post-jobs redirect to dashboard
+        // Torrent-Delete post-job redirects to new Torrent-Delete job
+// Note: Torrent-Delete redirect is disabled by default so the post-job screen can act as a visual confirmation of completion. To enable, remove the slashes at the start of the next 2 lines.
+//        } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-delete/') {
+//            setTimeout(() => {window.location.replace('https://jenkins.rpdl.net/job/torrent-delete/build')}, 500);
+        // Torrent-Rename and Torrent-Transfer post-jobs redirect to dashboard
         } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-rename/' || currentUrl === 'https://jenkins.rpdl.net/job/torrent-transfer/') {
-            window.location.replace('https://jenkins.rpdl.net/');}
+            window.location.replace('https://jenkins.rpdl.net/');
+        }
     }
 
     // Calls performRedirect when page loads
