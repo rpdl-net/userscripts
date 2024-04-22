@@ -23,7 +23,7 @@ On a `f95zone.to/threads/*` page, 2 buttons appear:
 Redirects:
 - when you finish a build job, redirects to a new build job
 - when you finish a delete job, redirects to a new delete job
-    In my usage of the script, I've found I preferred to comment this redirect out to have a visual confirmation of it pasting and confirmation when job is run (see limitation #4).
+    Torrent-Delete redirect is disabled by default. To enable, check note near the end of the script.
 - when you finish a rename job, redirects to jenkins dashboard
 - when you finish a transfer job, redirects to jenkins dashboard
 
@@ -60,6 +60,8 @@ New game:
     - Bugfixes
 - v1.1.6
     - Bugfixes relating to rebuild plugin re-implementation
+- v1.1.7
+    - Disabled torrent-delete redirect by default
 
 ## Future features:
 - Add a `Token-update` button on [dl.rpdl](https://dl.rpdl.net) which fetches passkey from Local Storage, and pastes in a token job.
