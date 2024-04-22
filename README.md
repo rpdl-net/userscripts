@@ -23,7 +23,7 @@ On a `f95zone.to/threads/*` page, 2 buttons appear:
 Redirects:
 - when you finish a build job, redirects to a new build job
 - when you finish a delete job, redirects to a new delete job
-    Torrent-Delete redirect is disabled by default. To enable, check note near the end of the script.
+    - *Torrent-Delete redirect is disabled by default. To enable, check note near the end of the script.*
 - when you finish a rename job, redirects to jenkins dashboard
 - when you finish a transfer job, redirects to jenkins dashboard
 
