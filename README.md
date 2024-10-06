@@ -1,4 +1,4 @@
-## RPDL uploader enhancements userscript</div>
+## RPDL uploader enhancements userscript
 
 ### Installation:
 1. Install a userscript manager (extension allowing modifying of webpages or behavior). [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended.
