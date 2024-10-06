@@ -1,18 +1,17 @@
 // ==UserScript==
-// @name         F95-Zone skipper
-// @namespace    -
+// @name         F95 Skipper Base
+// @icon         f95zone.to/favicon.ico
+// @homepageURL  {insert here}
 // @version      1.2.3
-// @description  This userscript skips masked f95 links for you.
-// @author       Cat-Ling
-// @homepageURL  https://github.com/Cat-Ling
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=f95zone.to
+// @description  Skips the masked link page when opening various hosts on F95zone.
+// @author       rpdl.net (forked from Cat-Ling)
 // @match        https://f95zone.to/masked/*
-// @exclude https://f95zone.to/masked/
-// @grant        none
-// @license GPL-2.0
-// @supportURL https://github.com/Cat-Ling/f95zone-skipper/issues
-// @downloadURL https://github.com/Cat-Ling/f95zone-skipper/raw/main/f95zone-skipper.user.js
-// @updateURL https://github.com/Cat-Ling/f95zone-skipper/raw/main/f95zone-skipper.user.js
+// @exclude      https://f95zone.to/masked/
+/// @grant       none
+// @license      GPL-2.0
+// @supportURL   https://raw.githubusercontent.com/rpdl-net/userscripts/..
+// @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/..
+// @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/..
 // ==/UserScript==
 
 (function() {
