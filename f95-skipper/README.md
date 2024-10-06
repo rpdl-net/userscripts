@@ -1,31 +1,14 @@
-## F95-Zone.to Masked URL Skipper 🔞
+## F95 masked link skipper userscript
 
-Chrome/Firefox desktop support is a given, the script will work as intended. As for Safari and other Apple jazz, I have no idea.
+These two scripts are forks (if we're being honest, more mirrors than anything) of Cat-Ling's [f95zone-skipper](https://github.com/Cat-Ling/f95zone-skipper). Any feedback or issues concerning these scripts will likely be forwarded to them.
 
-Confirmed working in (including ultra version now) -
-- Cromite (Android) (Native)
-- Firefox (Android) (Greasemonkey)
+### Installation:
+1. Install a userscript manager (extension allowing modifying of webpages or behavior). [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended.
+2. Paste the contents of [f95-skipper-base.js](link) or (f95-skipper-ultra.js)(link) in a [new script](https://www.tampermonkey.net/faq.php?locale=en#Q102).
+- Base version will auto-click the "Continue to.."
+- Ultra version will do the same thing, but almost immediately (currently in Beta)
 
-The ultra version is in beta, so it's compatibility may vary.
+### Additional notes (from the original repo):
+These scripts are provided as-is, and are not officially endorsed or supported by F95.
 
-For support requests in case the script doesn't work as intended, create an issue and add `[support]` in the title. You must include your OS, OS version, and your userscript manager's name in the description.
-For feature requests, use `[feature]`.
-
-### Usage: ⚒
-
-### Installation: 💿
-1. Make sure you've installed [Tampermonkey](https://www.tampermonkey.net/)/[Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) or any other userscript manager.
-2. Install one of these scripts.
-   ## [Standard Version](https://github.com/Cat-Ling/f95zone-skipper/raw/main/f95zone-skipper.user.js) (Auto clicks download button)
-   ## [Ultra Version](https://github.com/Cat-Ling/f95zone-skipper/raw/main/f95zone-skipper_ultra.user.js) (Beta) (Faster) (Almost immediately takes you to the download link)
-
-
-## Additional Notes: 📝
-
-This script is provided as-is and is not officially endorsed or supported by F95-Zone.
-
-As of 26 January 2024, this script is in compliance with F95-Zone's terms of service and general rules.
-
-#
-- **Author:** Cat-Ling 🐱
-- **License:** GPL-2.0 // no idea if it can even be enforced for such a small snippet of code.
+As of 26 January 2024, the scripts are in compliance with F95's terms of service and general rules.
