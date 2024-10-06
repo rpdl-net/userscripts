@@ -2,7 +2,7 @@
 // @name         RPDL Enhancement Userscript
 // @icon         https://dl.rpdl.net/favicon.ico
 // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-// @version      1.1.7
+// @version      1.1.7.1
 // @description  Provides enhancements to various sites used for torrent uploading
 // @author       RPDL Team
 // @match        https://dl.rpdl.net/*
@@ -85,6 +85,8 @@
             } else if (engineName.includes("Unity")) {
                 engines.push("Unity");
             } else if (engineName.includes("RPGM")) {
+                engines.push("RPGM");
+            } else if (engineName.includes("Wolf RPG")) {
                 engines.push("RPGM");}});
         if (engines.length === 1) {
             // Saves it to GM_setValue('engine')
