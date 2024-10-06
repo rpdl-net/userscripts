@@ -2,9 +2,9 @@
     // @name         RPDL Enhancement Userscript
     // @icon         https://dl.rpdl.net/favicon.ico
     // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-    // @version      1.1.8
+    // @version      1.1.9
     // @description  Provides enhancements to various sites used for torrent uploading
-    // @author       RPDL Team
+    // @author       rpdl.net
     // @match        https://dl.rpdl.net/*
     // @match        https://jenkins.rpdl.net/*
     // @match        https://f95zone.to/threads/*
@@ -16,6 +16,8 @@
     // @grant        window.onurlchange
     // @require      https://code.jquery.com/jquery-3.7.1.min.js
     // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
+    // @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/..
+    // @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/..
     // ==/UserScript==
 
     (function() {
