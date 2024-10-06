@@ -1,8 +1,8 @@
     // ==UserScript==
-    // @name         RPDL Enhancement Userscript
+    // @name         RPDL uploader enhancements userscript
     // @icon         https://dl.rpdl.net/favicon.ico
     // @homepageURL  https://git.rpdl.net/internal/rpdl-enhancement-userscript
-    // @version      1.1.9
+    // @version      1.1.9.1
     // @description  Provides enhancements to various sites used for torrent uploading
     // @author       rpdl.net
     // @match        https://dl.rpdl.net/*
