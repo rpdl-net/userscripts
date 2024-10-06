@@ -5,8 +5,8 @@ These two scripts are forks (if we're being honest, more mirrors than anything) 
 ### Installation:
 1. Install a userscript manager (extension allowing modifying of webpages or behavior). [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended.
 2. Paste the contents of [f95-skipper-base.js](link) or (f95-skipper-ultra.js)(link) in a [new script](https://www.tampermonkey.net/faq.php?locale=en#Q102).
-- Base version will auto-click the "Continue to.."
-- Ultra version will do the same thing, but almost immediately (currently in Beta)
+- Base version will auto-click the "Continue to.." prompt
+- Ultra version (currently in Beta) will do the same thing, but quicker (almost immediately)
 
 ### Additional notes (from the original repo):
 These scripts are provided as-is, and are not officially endorsed or supported by F95.
