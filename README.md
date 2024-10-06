@@ -64,5 +64,5 @@ Performs various redirects:
     - Adds engine exception so _Wolf RPG_ games are tagged as having the _RPGM_ engine in Jenkins.
 - v1.1.8
     - Jenkins usernames will now be stored in browser storage, so they can be fetched and set upon script updates.
-- v1.1.9
-    - Prep for publishing script to Github, allowing for auto-updating.
+- v1.1.9>1.1.9.1
+    - Prep for publishing script to Github allowing for auto-updating, and various cleanups
