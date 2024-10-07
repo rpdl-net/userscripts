@@ -8,7 +8,7 @@
 // @match        https://f95zone.to/masked/*
 // @exclude      https://f95zone.to/masked/
 // @license      GPL-2.0
-// @supportURL   https://github.com/rpdl-net/userscripts..
+// @supportURL   https://github.com/rpdl-net/userscripts/issues
 // @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/f95-skipper/f95-skipper-ultra.js
 // @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/f95-skipper/f95-skipper-ultra.js
 // ==/UserScript==
