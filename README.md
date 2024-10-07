@@ -16,4 +16,5 @@ Mirror of the ultra version of https://github.com/Cat-Ling/f95zone-skipper/, all
 2. Paste the script you want to use in a [new script](https://www.tampermonkey.net/faq.php?locale=en#Q102).
 3. Read each script's README for more info.
 
+:)
 
