@@ -3,7 +3,7 @@
 ### Installation:
 1. Install a userscript manager (extension allowing modifying of webpages or behavior). [Tampermonkey](https://www.tampermonkey.net/index.php) is recommended.
     - Currently an issue with [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) and [ViolentMonkey](https://violentmonkey.github.io/get-it/) causing button injection to break.
-2. Paste the contents of [rpdl-uploader-enhancements.js]({insert-update-url-here}) in a [new script](https://www.tampermonkey.net/faq.php?locale=en#Q102).
+2. Paste the contents of [rpdl-uploader-enhancements.js](https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.js) in a [new script](https://www.tampermonkey.net/faq.php?locale=en#Q102).
 3. If this is your first time installing the script, replace `{your-username}` with your Jenkins user at the start of the script.
     - > const username = "Alice";
 
