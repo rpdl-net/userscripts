@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         F95 Skipper Ultra (Beta)
 // @icon         f95zone.to/favicon.ico
-// @homepageURL  https://github.com/rpdl-net/userscripts/..
+// @homepageURL  https://github.com/rpdl-net/userscripts/tree/main/f95-skipper
 // @version      0.1.4
 // @description  Alternative userscript that skips the masked link page when opening various hosts on F95zone. This version works even faster, it's recommended if you want almost immediate skips.
 // @author       rpdl.net (forked from Cat-Ling)
@@ -9,8 +9,8 @@
 // @exclude      https://f95zone.to/masked/
 // @license      GPL-2.0
 // @supportURL   https://github.com/rpdl-net/userscripts..
-// @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/..
-// @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/..
+// @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/f95-skipper/f95-skipper-ultra.js
+// @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/f95-skipper/f95-skipper-ultra.js
 // ==/UserScript==
 
 (function() {
