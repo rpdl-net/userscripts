@@ -24,7 +24,7 @@
         'use strict';
 
         // Define your Jenkins username here; used for redirect to build-new, and dropdown selectors jobs (transfer, token-update)
-        let username = gm_getValue('username');
+        let username = GM_getValue('username');
         if (username === undefined || username === null || username === '') {
             const username = "{your-username}";
             GM_setValue('username', username);}
