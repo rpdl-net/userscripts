@@ -6,11 +6,10 @@ This repository contains various scripts that can be of use to uploaders and use
 _**Note: Scripts with a :star: can be used by anyone without issues, while those without will require specific access for the script to be fully functional.**_
 
 ### [F95 Skipper](https://github.com/rpdl-net/userscripts/tree/main/f95-skipper) :star:
-Fork (more a mirror if anything) of [Cat-Ling/f95zone-skipper](https://github.com/Cat-Ling/f95zone-skipper/). Provides 2 scripts automating skipping the "Link Masked" page when following select file hosts' links.
+Fork of [Cat-Ling/f95zone-skipper](https://github.com/Cat-Ling/f95zone-skipper/). Provides scripts to skips the "Link Masked" page for F95 file host redirects.
 
 ### [Uploader Enhancements](https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements)
-Provides various enhancements to uploaders' workflow in uploading content to RPDL.
-
+Provides various enhancements to RPDL uploading workflow.
 
 
 ## Installation:
