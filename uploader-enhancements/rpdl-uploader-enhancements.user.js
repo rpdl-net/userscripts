@@ -29,7 +29,7 @@
         // Define your Jenkins username here; used for redirect to build-new, and dropdown selectors jobs (transfer, token-update)
         let username = GM_getValue('username');
         if (username === undefined || username === null || username === '') {
-            const username = "{your-username}";
+            const username = "";
             GM_setValue('username', username);}
         // Input your username (i.e. bob) where {your-username} is; should look like :
         // >> const username = "bob";
