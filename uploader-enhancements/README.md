@@ -66,3 +66,5 @@ Performs various redirects:
     - Jenkins usernames will now be stored in browser storage, so they can be fetched and set upon script updates.
 - v1.1.9>1.1.9.1
     - Prep for publishing script to Github allowing for auto-updating, and various cleanups
+- v1.19.2>1.1.9.4
+    - Bugfixing
