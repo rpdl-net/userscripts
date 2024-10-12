@@ -1,23 +1,26 @@
     // ==UserScript==
-    // @name         RPDL uploader enhancements userscript
-    // @icon         https://dl.rpdl.net/favicon.ico
-    // @homepageURL  https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
-    // @version      1.1.9.1
-    // @description  Provides enhancements to various sites used for torrent uploading
-    // @author       rpdl.net Team
-    // @match        https://dl.rpdl.net/*
-    // @match        https://jenkins.rpdl.net/*
-    // @match        https://f95zone.to/threads/*
-    // @grant        GM_setValue
-    // @grant        GM_getValue
-    // @grant        GM_setClipboard
-    // @grant        GM_deleteValue
-    // @grant        GM_addStyle
-    // @grant        window.onurlchange
-    // @require      https://code.jquery.com/jquery-3.7.1.min.js
-    // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
-    // @updateURL    https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.js
-    // @downloadURL  https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.js
+    // @name 			RPDL Uploader Enhancements
+    // @namespace		https://github.com/rpdl-net/userscripts/
+    // @version			1.1.9.2
+    // @description 	Provides various enhancements to uploading workflow.
+    // @author 			rpdl-net
+    // @match 			https://dl.rpdl.net/*
+    // @match 			https://jenkins.rpdl.net/*
+    // @match 			https://f95zone.to/threads/*
+    // @grant			GM_setValue
+    // @grant			GM_getValue
+    // @grant			GM_deleteValue
+    // @grant			GM_setClipboard
+    // @grant			GM_addStyle
+    // @grant			window.onurlchange
+    // @require			https://code.jquery.com/jquery-3.7.1.min.js
+    // @require			https://gist.github.com/raw/2625891/waitForKeyElements.js
+    // @tag				access-required
+    // @icon			https://dl.rpdl.net/favicon.ico
+    // @homepage		https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
+    // @updateURL		https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
+    // @downloadURL		https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
+    // @supportURL		https://github.com/rpdl-net/userscripts/issues
     // ==/UserScript==
 
     (function() {
