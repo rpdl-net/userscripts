@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.1.9.2
+    // @version			1.1.9.3
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -31,7 +31,7 @@
         if (username === undefined || username === null || username === '') {
             const username = "{your-username}";
             GM_setValue('username', username);}
-        // Input your username (i.e. bob) where {your-username} is; should look like:
+        // Input your username (i.e. bob) where {your-username} is; should look like :
         // >> const username = "bob";
 
         // Pulls torrent Id (from url)
