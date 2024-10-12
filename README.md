@@ -1,5 +1,5 @@
 # RPDL-related userscripts
-This repository contains various scripts that can be of use to uploaders and users alike within the RPDL ecosystem.
+This repository contains various scripts that can be of use to uploaders and users alike within the RPDL and/or F95 ecosystem.
 
 ## Scripts
 
