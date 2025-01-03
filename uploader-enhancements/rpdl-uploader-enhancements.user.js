@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.2
+    // @version			1.2.2
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -131,15 +131,20 @@
         // Redirects to the last page of the thread
         function goToLast() {
             var currentPage = window.location.href;
-            var lastPage = currentPage + "page-999999/";
-            window.location.href = lastPage;
+            if (/\/page-\d+$/.test(currentPage)) {
+                var newPage = currentPage.replace(/\/page-\d+$/, '/page-999999');
+            } else {
+                var newPage = currentPage.replace(/\/$/, '') + '/page-999999';
+            }
+            window.location.href = newPage;
         }
+
 
         function init(){
             // Checks if the current page is a Jenkins job (which is not rebuild screen) or a torrent page
             const isJenkinsJob = window.location.href.startsWith("https://jenkins.rpdl.net/job/") && !window.location.href.includes("rebuild");
             const isTorrentPage = window.location.href.match(/^https:\/\/dl\.rpdl\.net\/torrent\/\d+$/);
-            const isF95Page = /^https:\/\/f95zone\.to\/threads\/[^\/]*\/$/.test(window.location.href);
+            const isF95Page = /^https:\/\/f95zone\.to\/threads\/[^/]+/.test(window.location.href);
             // If on a Jenkins job, it waits for the page to load and calls pasteAll
             if(isJenkinsJob){
                 window.addEventListener("load", pasteAll);
