@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.1.9.4
+    // @version			1.2
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -9,9 +9,6 @@
     // @match 			https://f95zone.to/threads/*
     // @grant			GM_setValue
     // @grant			GM_getValue
-    // @grant			GM_deleteValue
-    // @grant			GM_setClipboard
-    // @grant			GM_addStyle
     // @grant			window.onurlchange
     // @require			https://code.jquery.com/jquery-3.7.1.min.js
     // @require			https://gist.github.com/raw/2625891/waitForKeyElements.js
@@ -30,84 +27,9 @@
         let username = GM_getValue('username');
         if (username === undefined || username === null || username === '') {
             const username = "";
+            // Input your username above.
+            // const username = "bob";
             GM_setValue('username', username);}
-        // Input your username (i.e. bob) where {your-username} is; should look like :
-        // >> const username = "bob";
-
-        // Pulls torrent Id (from url)
-        function getId() {
-            var url = window.location.href;
-            var match = url.match(/\/(\d+)$/);
-            if (match) {
-                var id = match[1];
-                // Saves it to GM_setValue('torrentid')
-                GM_setValue('torrentid', id);}
-        }
-
-        // Pulls torrent name (from title)
-        function getName() {
-            const h1Element = document.querySelector('h1.py-2.text-xl.font-semibold.text-slate-200.truncate');
-            if (h1Element) {
-                const releasename = h1Element.textContent.trim();
-                // Saves it to GM_setValue('releasename')
-                GM_setValue('releasename', releasename);}
-        }
-
-        // Pulls funding link (from description)
-        function getFunding() {
-            const markdownBody = document.querySelector('div.markdown-body');
-            if (markdownBody) {
-                const fundingLinkElements = markdownBody.querySelectorAll('a');
-                for (const linkElement of fundingLinkElements) {
-                    if (linkElement.textContent.trim() === 'Developer Funding') {
-                        const fundinglink = linkElement.getAttribute('href');
-                        // Saves it to GM_setValue('funding')
-                        GM_setValue('funding', fundinglink);}}}
-        }
-
-        // Calls to pull torrent page values and saves to GM_setValue('{type}', {value})
-        function getAll() {
-            getId();
-            getName();
-            getFunding();
-        }
-
-        // Pulls thread (site) url
-        function getThread() {
-            var f95Url = window.location.href;
-            // Saves it to GM_setValue('f95zonelink')
-            if (f95Url) { GM_setValue('f95zonelink', f95Url); }
-        }
-
-        // Pulls thread engine
-        function getEngine() {
-            const h1All = document.querySelectorAll('h1');
-            const engines = [];
-            h1All.forEach(h1 => {
-                const engineName = h1.textContent.trim();
-                if (engineName.includes("Ren'Py")) {
-                    engines.push("Renpy");
-                } else if (engineName.includes("HTML")) {
-                    engines.push("HTML");
-                } else if (engineName.includes("Unreal Engine")) {
-                    engines.push("Unreal");
-                } else if (engineName.includes("Unity")) {
-                    engines.push("Unity");
-                } else if (engineName.includes("RPGM")) {
-                    engines.push("RPGM");
-                } else if (engineName.includes("Wolf RPG")) {
-                    engines.push("RPGM");}});
-            if (engines.length === 1) {
-                // Saves it to GM_setValue('engine')
-                GM_setValue('engine', engines[0]);
-            } else { GM_setValue('engine', "Other"); }
-        }
-
-        // Calls to pull F95 thread values and saves to GM_setValue('{type}', {value})
-        function getF95() {
-            getThread();
-            getEngine();
-        }
 
         // Fills input fields (boxes and dropdowns) on Jenkins with GM values and username
         function fillInputField(name, overrideValue){
@@ -126,18 +48,6 @@
 
         // Pastes the pulled values to their respective boxes, if found
         function pasteAll() {
-            // Fills the "torrentid" box found on Torrent-Delete, Torrent-Rename, and Torrent-Transfer
-            fillInputField("torrentid");
-            // Fills the "releasename" box found on Build-New
-            fillInputField("releasename");
-            // Fills the "funding" box found on Build-New
-            fillInputField("funding");
-            // Fills the "f95zonelink" box found on Build-New
-            fillInputField("f95zonelink");
-
-            // Fills the "newname" box found on Torrent-Rename using the "releasename" value
-            fillInputField("newname", GM_getValue('releasename'));
-
             // Selects and fills the dropdown found on Torrent-Transfer with the username defined at the beginning of the script, or the dropdown found on Build-New with the engine value saved in GM_setValue('engine')
             // Paste is set to occur on page load, so dropdown can still be modified if transfering to another uploader, or if engine needs to be modified
             const dropdown = document.querySelector('div.jenkins-select[name="parameter"]');
@@ -151,7 +61,7 @@
             // Calls clearAllValues to remove saved/pasted values from storage after half a second
             setTimeout(clearAllValues, 500);
         }
-        
+
         // Creates torrent page button style, and adds click handlers for left-click, middle-click, or new tab opening
         function createButton(text, url) {
             const button = document.createElement('button');
@@ -173,14 +83,11 @@
             // Click event handlers
             button.addEventListener('click', (event) => {
                 event.preventDefault(); // Prevent the default action (redirecting the current page)
-                getAll();
-                if (text === 'Delete') {
-                    window.open(url, '_self');
-                } else {
-                    window.open(url, '_blank');}});
+                window.open(url, '_blank');});
             button.addEventListener('auxclick', (event) => {
                 if ((event.button === 1 || (event.button === 0 && event.ctrlKey)) && event.target === button) {
-                    clickHandler(event);}});
+                    clickHandler(event);}}
+                                   );
             return button;
         }
 
@@ -198,7 +105,7 @@
             buttonContainer.appendChild(deleteButton);
             buttonContainer.appendChild(renameButton);
             buttonContainer.appendChild(transferButton);
-            
+
             torrentPage.appendChild(buttonContainer);
         }
 
@@ -220,9 +127,7 @@
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 var buttonText = button.textContent.trim();
-                if (buttonText === "Copy Engine & Url") {
-                    getF95();
-                } else if (buttonText === "Last page") {
+                if (buttonText === "Last page") {
                     goToLast();}});
             return button;
         }
@@ -230,19 +135,18 @@
         // Adds buttons to F95 threads
         function addF95Button() {
             const buttonGroup = document.querySelector('.buttonGroup');
+            const firstButton = buttonGroup.querySelector('.button--link.button');
             if (buttonGroup) {
-                const engineButton = createF95Button('Copy Engine & Url');
                 const lastButton = createF95Button('Last page');
                 const firstButton = buttonGroup.querySelector('.button--link.button');
                 if (firstButton) {
-                    buttonGroup.insertBefore(engineButton, firstButton);
-                    buttonGroup.insertBefore(lastButton, engineButton);}}
+                    buttonGroup.insertBefore(lastButton, firstButton);}}
         }
 
         // Redirects to the last page of the thread
         function goToLast() {
             var currentPage = window.location.href;
-            var lastPage = currentPage + "page-500000/";
+            var lastPage = currentPage + "page-999999/";
             window.location.href = lastPage;
         }
 
@@ -261,22 +165,12 @@
             } else if (isF95Page) {
                 addF95Button();
             // If on another page, calls clearAllValues to remove saved/pasted values from storage
-            }else{
-                clearAllValues();}
+            }
         }
 
         // When changing pages, calls init to check if on Jenkins job or torrent page
         if(!window.onurlchange){
             window.addEventListener("urlchange", init);
-        }
-
-        // Clears all values from GM_setValue storage once the pasting of values, and selecting of dropdown has occured
-        function clearAllValues() {
-            GM_deleteValue('torrentid');
-            GM_deleteValue('releasename');
-            GM_deleteValue('funding');
-            GM_deleteValue('f95zonelink');
-            GM_deleteValue('engine');
         }
 
         // Calls init to check if on Jenkins job or torrent page
