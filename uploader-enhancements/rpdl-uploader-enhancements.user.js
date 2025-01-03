@@ -31,21 +31,6 @@
             // const username = "bob";
             GM_setValue('username', username);}
 
-        // Fills input fields (boxes and dropdowns) on Jenkins with GM values and username
-        function fillInputField(name, overrideValue){
-            const value = overrideValue ?? GM_getValue(name);
-            if (name === "funding" && (value === null || value === undefined)) {
-            return "https://rpdl.net/missinginfo/";}
-            const inputField = document.querySelector('input[name="name"][type="hidden"][value="' + name + '"]');
-            if(inputField){
-                const nextInput = inputField.nextElementSibling;
-                if(nextInput && nextInput.tagName.toLowerCase() == "input"){
-                    nextInput.value = value || "";}}
-                    // Replaces "undefined" values as blank, so "undefined" isn't pasted when no data is pulled
-                    // Can be replaced with {next.Input.value = value;} to debug and check if script pastes values in the right area
-                    // If values are being pasted in the right area, but still come back as undefined/blank, it means that the clearAllValues function is being called too early
-        }
-
         // Pastes the pulled values to their respective boxes, if found
         function pasteAll() {
             // Selects and fills the dropdown found on Torrent-Transfer with the username defined at the beginning of the script, or the dropdown found on Build-New with the engine value saved in GM_setValue('engine')
