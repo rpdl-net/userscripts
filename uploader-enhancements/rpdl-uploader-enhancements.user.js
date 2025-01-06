@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.2.2
+    // @version			1.2.3
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -132,9 +132,9 @@
         function goToLast() {
             var currentPage = window.location.href;
             if (/\/page-\d+$/.test(currentPage)) {
-                var newPage = currentPage.replace(/\/page-\d+$/, '/page-999999');
+                var newPage = currentPage.replace(/\/page-\d+$/, '/latest');
             } else {
-                var newPage = currentPage.replace(/\/$/, '') + '/page-999999';
+                var newPage = currentPage.replace(/\/$/, '') + '/latest';
             }
             window.location.href = newPage;
         }
