@@ -1,7 +1,8 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.2.3
+    // @version			1.3
+    // Changelog        Merges paste sniffer into main script.
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -9,6 +10,7 @@
     // @match 			https://f95zone.to/threads/*
     // @grant			GM_setValue
     // @grant			GM_getValue
+    // @grant           GM_deleteValue
     // @grant			window.onurlchange
     // @require			https://code.jquery.com/jquery-3.7.1.min.js
     // @require			https://gist.github.com/raw/2625891/waitForKeyElements.js
@@ -139,6 +141,70 @@
             window.location.href = newPage;
         }
 
+        // Function to find the rpdl.net/docs link and create a floating button
+    function pasteSniffer() {
+        const pageBody = document.querySelector('div.p-body');
+        if (!pageBody) {
+            console.log('Page body not found!');
+            return;
+        }
+
+        const linkElements = pageBody.querySelectorAll('a');
+        let rpdlLinkFound = false;
+        let postLink = null;
+
+        // Search through all the links on the page to find the rpdl.net/docs link
+        for (const link of linkElements) {
+            const href = link.getAttribute('href');
+            if (href === 'https://rpdl.net/docs/') {
+                console.log('Found the rpdl.net/docs link:', href);
+                rpdlLinkFound = true;
+
+                // Look for the post link near this rpdl.net/docs link
+                let postContainer = link.closest('.message');
+                if (postContainer) {
+                    const postLinkElement = postContainer.querySelector('a[href^="/threads"]'); // Look for post link inside this post
+                    if (postLinkElement) {
+                        postLink = `https://f95zone.to${postLinkElement.getAttribute('href')}`;
+                        console.log('Found the associated post link:', postLink);
+                    }
+                }
+                break; // Exit once we find the rpdl.net/docs link and its associated post link
+            }
+        }
+
+        if (rpdlLinkFound && postLink) {
+            // Create a floating button if the rpdl.net/docs and post link are found
+            createPasteButton(postLink);
+        } else {
+            console.log('Did not find the rpdl.net/docs link or associated post link.');
+        }
+    }
+
+    // Create a floating button and add it to the page
+    function createPasteButton(postLink) {
+        const button = document.createElement('button');
+        button.textContent = 'Open Post Link';
+        button.style.position = 'fixed';
+        button.style.bottom = '20px';
+        button.style.right = '20px';
+        button.style.padding = '10px 20px';
+        button.style.fontSize = '14px';
+        button.style.backgroundColor = '#007BFF';
+        button.style.color = '#fff';
+        button.style.border = 'none';
+        button.style.borderRadius = '5px';
+        button.style.cursor = 'pointer';
+        button.style.zIndex = '9999';
+
+        // When the button is clicked, open the post link in the current window
+        button.addEventListener('click', () => {
+            window.location.href = postLink;
+        });
+
+        document.body.appendChild(button);
+    }
+
 
         function init(){
             // Checks if the current page is a Jenkins job (which is not rebuild screen) or a torrent page
@@ -154,6 +220,7 @@
             // If on a F95 page, it adds the buttons
             } else if (isF95Page) {
                 addF95Button();
+                pasteSniffer();
             // If on another page, calls clearAllValues to remove saved/pasted values from storage
             }
         }
