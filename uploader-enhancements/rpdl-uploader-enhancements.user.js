@@ -1,8 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.3
-    // Changelog        Merges paste sniffer into main script.
+    // @version			1.4-alpha.1
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -205,6 +204,24 @@
         document.body.appendChild(button);
     }
 
+        function hostSniffer() {
+    const f95Links = document.querySelectorAll('a[class*="link link--external"]');
+    const processedUrls = new Set();
+    f95Links.forEach(link => {
+      const backgroundImage = getComputedStyle(link).backgroundImage;
+      const urlMatch = backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
+      if (urlMatch && urlMatch[2]) {
+      const url = urlMatch[2];
+      if ((url.includes("anonymfile") || url.includes("catbox") || url.includes("delafil") ||
+           url.includes("download.gg") || url.includes("files.dp.ua") || url.includes("filesfm") ||
+           url.includes("gofile") || url.includes("drive.google") || url.includes("mediafire") ||
+           url.includes("up2share") || url.includes("uploadnow") || url.includes("yourfilestore") ||
+           url.includes("pixeldrain")) && !processedUrls.has(url)) {
+        processedUrls.add(url);
+        link.style.color = '#4CBB17';
+      }
+    }
+  })};
 
         function init(){
             // Checks if the current page is a Jenkins job (which is not rebuild screen) or a torrent page
@@ -221,6 +238,7 @@
             } else if (isF95Page) {
                 addF95Button();
                 pasteSniffer();
+                hostSniffer();
             // If on another page, calls clearAllValues to remove saved/pasted values from storage
             }
         }
