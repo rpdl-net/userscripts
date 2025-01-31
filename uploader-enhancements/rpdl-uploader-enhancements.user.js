@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.4-alpha.2
+    // @version			1.4-alpha.3
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -193,7 +193,7 @@
         button.textContent = 'Open Post Link';
         button.style.position = 'fixed';
         button.style.bottom = '20px';
-        button.style.right = '20px';
+        button.style.left = '20px';
         button.style.padding = '10px 20px';
         button.style.fontSize = '14px';
         button.style.backgroundColor = '#007BFF';
