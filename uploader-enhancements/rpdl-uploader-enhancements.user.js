@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.4-alpha.1
+    // @version			1.4-alpha.2
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -121,14 +121,21 @@
         // Adds buttons to F95 threads
         function addF95Button() {
             const buttonGroup = document.querySelector('.buttonGroup');
-            const firstButton = buttonGroup.querySelector('.button--link.button');
+            // const firstButton = buttonGroup.querySelector('.button--link.button');
             if (buttonGroup) {
                 const lastButton = createF95Button('Last page');
                 const firstButton = buttonGroup.querySelector('.button--link.button');
-                if (firstButton) {
-                    buttonGroup.insertBefore(lastButton, firstButton);}}
+                var currentPage = window.location.href;
+                if (/slide=\d+$/.test(currentPage)) {
+                    return;
+                } else {
+                    if (firstButton.href !== lastButton.href) {
+                        buttonGroup.insertBefore(lastButton, firstButton);
+                    }
+                }
+            }
         }
-
+        
         // Redirects to the last page of the thread
         function goToLast() {
             var currentPage = window.location.href;
