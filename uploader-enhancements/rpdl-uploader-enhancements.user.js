@@ -1,24 +1,24 @@
     // ==UserScript==
-    // @name 			RPDL Uploader Enhancements
-    // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.4-alpha.4
-    // @description 	Provides various enhancements to uploading workflow.
-    // @author 			rpdl-net
-    // @match 			https://dl.rpdl.net/*
-    // @match 			https://jenkins.rpdl.net/*
-    // @match 			https://f95zone.to/threads/*
-    // @grant			GM_setValue
-    // @grant			GM_getValue
+    // @name            RPDL Uploader Enhancements
+    // @namespace       https://github.com/rpdl-net/userscripts/
+    // @version         1.4-alpha.5
+    // @description     Provides various enhancements to uploading workflow.
+    // @author          rpdl-net
+    // @match           https://dl.rpdl.net/*
+    // @match           https://jenkins.rpdl.net/*
+    // @match           https://f95zone.to/threads/*
+    // @grant           GM_setValue
+    // @grant           GM_getValue
     // @grant           GM_deleteValue
-    // @grant			window.onurlchange
-    // @require			https://code.jquery.com/jquery-3.7.1.min.js
-    // @require			https://gist.github.com/raw/2625891/waitForKeyElements.js
-    // @tag				access-required
-    // @icon			https://dl.rpdl.net/favicon.ico
-    // @homepage		https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
-    // @updateURL		https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
-    // @downloadURL		https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
-    // @supportURL		https://github.com/rpdl-net/userscripts/issues
+    // @grant           window.onurlchange
+    // @require         https://code.jquery.com/jquery-3.7.1.min.js
+    // @require         https://gist.github.com/raw/2625891/waitForKeyElements.js
+    // @tag             access-required
+    // @icon            https://dl.rpdl.net/favicon.ico
+    // @homepage        https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
+    // @updateURL       https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
+    // @downloadURL     https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
+    // @supportURL      https://github.com/rpdl-net/userscripts/issues
     // ==/UserScript==
 
     (function() {
@@ -135,7 +135,7 @@
                 }
             }
         }
-        
+
         // Redirects to the last page of the thread
         function goToLast() {
             var currentPage = window.location.href;
