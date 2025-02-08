@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name 			RPDL Uploader Enhancements
     // @namespace		https://github.com/rpdl-net/userscripts/
-    // @version			1.4-alpha.3
+    // @version			1.4-alpha.4
     // @description 	Provides various enhancements to uploading workflow.
     // @author 			rpdl-net
     // @match 			https://dl.rpdl.net/*
@@ -211,24 +211,31 @@
         document.body.appendChild(button);
     }
 
-        function hostSniffer() {
+function hostSniffer() {
     const f95Links = document.querySelectorAll('a[class*="link link--external"]');
     const processedUrls = new Set();
     f95Links.forEach(link => {
-      const backgroundImage = getComputedStyle(link).backgroundImage;
-      const urlMatch = backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
-      if (urlMatch && urlMatch[2]) {
-      const url = urlMatch[2];
-      if ((url.includes("anonymfile") || url.includes("catbox") || url.includes("delafil") ||
+        const backgroundImage = getComputedStyle(link).backgroundImage;
+        const urlMatch = backgroundImage.match(/url\(['"]?(.*?)['"]?\)/);
+        if (urlMatch && urlMatch[1]) {
+            const url = urlMatch[1];
+            if ((url.includes("anonymfile") || url.includes("catbox") || url.includes("delafil") ||
            url.includes("download.gg") || url.includes("files.dp.ua") || url.includes("filesfm") ||
-           url.includes("gofile") || url.includes("drive.google") || url.includes("mediafire") ||
-           url.includes("up2share") || url.includes("uploadnow") || url.includes("yourfilestore") ||
+           url.includes("up2share") || url.includes("drive.google") || url.includes("mediafire") ||
+           url.includes("gofile") || url.includes("uploadnow") || url.includes("yourfilestore") ||
            url.includes("pixeldrain")) && !processedUrls.has(url)) {
-        processedUrls.add(url);
-        link.style.color = '#4CBB17';
-      }
-    }
-  })};
+                processedUrls.add(url);
+                // Target the inner span if it exists
+                const span = link.querySelector('span');
+                if (span) {
+                    span.style.color = '#4CBB17'; // Override span's color
+                } else {
+                    link.style.color = '#4CBB17'; // Fallback for links without spans
+                }
+            }
+        }
+    });
+};
 
         function init(){
             // Checks if the current page is a Jenkins job (which is not rebuild screen) or a torrent page
