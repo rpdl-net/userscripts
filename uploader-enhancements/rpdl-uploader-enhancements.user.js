@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name            RPDL Uploader Enhancements
     // @namespace       https://github.com/rpdl-net/userscripts/
-    // @version         1.4-alpha.5
+    // @version         1.4-alpha.6
     // @description     Provides various enhancements to uploading workflow.
     // @author          rpdl-net
     // @match           https://dl.rpdl.net/*
@@ -223,7 +223,7 @@ function hostSniffer() {
            url.includes("download.gg") || url.includes("files.dp.ua") || url.includes("filesfm") ||
            url.includes("up2share") || url.includes("drive.google") || url.includes("mediafire") ||
            url.includes("gofile") || url.includes("uploadnow") || url.includes("yourfilestore") ||
-           url.includes("pixeldrain")) && !processedUrls.has(url)) {
+           url.includes("buzzheavier") || url.includes("pixeldrain")) && !processedUrls.has(url)) {
                 processedUrls.add(url);
                 // Target the inner span if it exists
                 const span = link.querySelector('span');
