@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name            RPDL Uploader Enhancements
     // @namespace       https://github.com/rpdl-net/userscripts/
-    // @version         1.4-alpha.7
+    // @version         1.4-alpha.8
     // @description     Provides various enhancements to uploading workflow.
     // @author          rpdl-net
     // @match           https://dl.rpdl.net/*
@@ -12,7 +12,6 @@
     // @grant           GM_deleteValue
     // @grant           window.onurlchange
     // @require         https://code.jquery.com/jquery-3.7.1.min.js
-    // @require         https://gist.github.com/raw/2625891/waitForKeyElements.js
     // @tag             access-required
     // @icon            https://dl.rpdl.net/favicon.ico
     // @homepage        https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
@@ -23,7 +22,7 @@
 
     (function() {
         'use strict';
-
+       
         // Define your Jenkins username here; used for redirect to build-new, and dropdown selectors jobs (transfer, token-update)
         let username = GM_getValue('username');
         if (username === undefined || username === null || username === '') {
@@ -279,6 +278,56 @@ function hostSniffer() {
             } else if (currentUrl === 'https://jenkins.rpdl.net/job/torrent-rename/' || currentUrl === 'https://jenkins.rpdl.net/job/torrent-transfer/') {
                 window.location.replace('https://jenkins.rpdl.net/');
             }
+        }
+
+        function waitForKeyElements (selectorTxt,actionFunction,bWaitOnce,iframeSelector) {
+            var targetNodes, btargetsFound;
+            if (typeof iframeSelector == "undefined")
+                targetNodes     = $(selectorTxt);
+            else
+                targetNodes     = $(iframeSelector).contents ()
+                                                .find (selectorTxt);
+    
+            if (targetNodes  &&  targetNodes.length > 0) {
+                btargetsFound   = true;
+                targetNodes.each ( function () {
+                    var jThis        = $(this);
+                    var alreadyFound = jThis.data ('alreadyFound')  ||  false;
+    
+                    if (!alreadyFound) {
+                        var cancelFound     = actionFunction (jThis);
+                        if (cancelFound)
+                            btargetsFound   = false;
+                        else
+                            jThis.data ('alreadyFound', true);
+                    }
+                } );
+            }
+            else {btargetsFound   = false;}
+    
+            var controlObj      = waitForKeyElements.controlObj  ||  {};
+            var controlKey      = selectorTxt.replace (/[^\w]/g, "_");
+            var timeControl     = controlObj [controlKey];
+    
+            if (btargetsFound  &&  bWaitOnce  &&  timeControl) {
+                clearInterval (timeControl);
+                delete controlObj [controlKey]
+            }
+            else {
+                if ( ! timeControl) {
+                    timeControl = setInterval ( function () {
+                            waitForKeyElements (    selectorTxt,
+                                                    actionFunction,
+                                                    bWaitOnce,
+                                                    iframeSelector
+                                                );
+                        },
+                        300
+                    );
+                    controlObj [controlKey] = timeControl;
+                }
+            }
+            waitForKeyElements.controlObj   = controlObj;
         }
 
         // Calls performRedirect when page loads
