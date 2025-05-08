@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name            RPDL Uploader Enhancements
     // @namespace       https://github.com/rpdl-net/userscripts/
-    // @version         1.4-alpha.8
+    // @version         1.4-alpha.9
     // @description     Provides various enhancements to uploading workflow.
     // @author          rpdl-net
     // @match           https://dl.rpdl.net/*
@@ -15,9 +15,9 @@
     // @tag             access-required
     // @icon            https://dl.rpdl.net/favicon.ico
     // @homepage        https://github.com/rpdl-net/userscripts/tree/main/uploader-enhancements
-    // @updateURL       https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
-    // @downloadURL     https://raw.githubusercontent.com/rpdl-net/userscripts/refs/heads/main/uploader-enhancements/rpdl-uploader-enhancements.user.js
     // @supportURL      https://github.com/rpdl-net/userscripts/issues
+    // @downloadURL https://update.greasyfork.org/scripts/535351/RPDL%20Uploader%20Enhancements.user.js
+    // @updateURL https://update.greasyfork.org/scripts/535351/RPDL%20Uploader%20Enhancements.meta.js
     // ==/UserScript==
 
     (function() {
