@@ -220,7 +220,7 @@ function hostSniffer() {
             const url = urlMatch[1];
             if ((url.includes("anonymfile") || url.includes("catbox") || url.includes("delafil") ||
            url.includes("download.gg") || url.includes("files.dp.ua") || url.includes("filesfm") ||
-           url.includes("up2share") || url.includes("drive.google") || url.includes("bowfile") || url.includes("mediafire") ||
+           url.includes("up2share") || url.includes("drive.google") || url.includes("bowfile") ||
            url.includes("gofile") || url.includes("uploadnow") || url.includes("yourfilestore") ||
            url.includes("buzzheavier") || url.includes("pixeldrain")) && !processedUrls.has(url)) {
                 processedUrls.add(url);
