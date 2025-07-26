@@ -1,7 +1,7 @@
     // ==UserScript==
     // @name            RPDL Uploader Enhancements
     // @namespace       https://github.com/rpdl-net/userscripts/
-    // @version         1.4-alpha.9
+    // @version         1.4-alpha.10
     // @description     Provides various enhancements to uploading workflow.
     // @author          rpdl-net
     // @match           https://dl.rpdl.net/*
